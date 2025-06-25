@@ -4,10 +4,11 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 
-dotenv.config();
-
+dotenv.config();// <-- this line loads environment variables from a .env file into process.env
+console.log('JWT_SECRET:', process.env.JWT_SECRET); // <-- test if JWT_SECRET is loaded correctly
 const app = express();
 
 // Middlewares
@@ -17,7 +18,7 @@ app.use(morgan('dev'));
 
 app.use('/api/auth', authRoutes);
 
-
+app.use('/api/user', userRoutes);
 // Routes
 app.get('/', (req, res) => {
   res.send('API is running...');
