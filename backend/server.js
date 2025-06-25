@@ -3,12 +3,15 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
+import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
 
 const app = express();
 
 // Middlewares
+app.use('/api/auth', authRoutes);
+
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
