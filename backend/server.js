@@ -5,11 +5,17 @@ import cors from 'cors';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import videoRoutes from './routes/videoRoutes.js';
 
 
 dotenv.config();// <-- this line loads environment variables from a .env file into process.env
 console.log('JWT_SECRET:', process.env.JWT_SECRET); // <-- test if JWT_SECRET is loaded correctly
 const app = express();
+
+// this line sets the port to the value of PORT in the .env file or defaults to 5000 if not set
+app.use(express.json());
+
+app.use('/api/videos', videoRoutes);
 
 // Middlewares
 app.use(cors());
