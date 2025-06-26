@@ -3,7 +3,6 @@ backend/node_modules/
 backend/.env
 
 
-
 # React build
 innovatube-frontend/dist/
 innovatube-frontend/node_modules/
@@ -13,3 +12,28 @@ innovatube-frontend/node_modules/
 
 # OS
 .DS_Store
+
+# Logs
+innovatube-frontend/logs
+innovatube-frontend/*.log
+innovatube-frontend/npm-debug.log*
+innovatube-frontend/yarn-debug.log*
+innovatube-frontend/yarn-error.log*
+innovatube-frontend/pnpm-debug.log*
+innovatube-frontend/lerna-debug.log*
+
+innovatube-frontend/node_modules
+innovatube-frontend/dist
+innovatube-frontend/dist-ssr
+innovatube-frontend/*.local
+
+# Editor directories and files
+innovatube-frontend/.vscode/*
+innovatube-frontend/!.vscode/extensions.json
+innovatube-frontend/.idea
+innovatube-frontend/.DS_Store
+innovatube-frontend/*.suo
+innovatube-frontend/*.ntvs*
+innovatube-frontend/*.njsproj
+innovatube-frontend/*.sln
+innovatube-frontend/*.sw?
