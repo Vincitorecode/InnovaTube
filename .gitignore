@@ -1,10 +1,12 @@
 # Node
-node_modules/
-.env
+backend/node_modules/
+backend/.env
+
+
 
 # React build
-frontend/dist/
-frontend/node_modules/
+innovatube-frontend/dist/
+innovatube-frontend/node_modules/
 
 # Logs
 *.log
