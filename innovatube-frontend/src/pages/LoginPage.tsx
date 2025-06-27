@@ -40,11 +40,6 @@ const LoginPage = () => {
     }
 
 
-    console.log({
-  emailOrUsername: form.emailOrUsername,
-  password: form.password,
-});
-
     try {
               const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
           method: "POST",

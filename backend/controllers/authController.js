@@ -45,6 +45,7 @@ export const registerUser = async (req, res) => {
 // --- LOGIN ---
 export const loginUser = async (req, res) => {
   try {
+    console.log("BODY RECIBIDO EN LOGIN:", req.body); // <-- Esto para ver qué llega
     const { emailOrUsername, password } = req.body;
 
     if (!emailOrUsername || !password) {
