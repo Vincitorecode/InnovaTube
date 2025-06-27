@@ -39,7 +39,6 @@ const LoginPage = () => {
       }
 
       localStorage.setItem("token", data.token);
-
       navigate("/");
     } catch (err: any) {
       setError(err.message || "Error de autenticación");
@@ -47,13 +46,15 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-[#0f0f0f] text-white px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#0f0f0f] text-white px-4 py-10">
+      {/* Logo */}
       <div className="flex items-center gap-2 mb-6">
         <PlayCircle size={32} className="text-red-600" />
         <h1 className="text-3xl font-bold">InnovaTube</h1>
       </div>
 
-      <div className="bg-[#1f1f1f] p-8 rounded-2xl w-full max-w-md shadow-2xl">
+      {/* Form */}
+      <div className="bg-[#1f1f1f] p-6 sm:p-8 rounded-2xl w-full max-w-md shadow-2xl">
         <h2 className="text-2xl font-bold mb-6 text-center">Iniciar sesión</h2>
 
         {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
@@ -61,10 +62,10 @@ const LoginPage = () => {
         <input
           type="text"
           name="emailOrUsername"
-          placeholder="Correo electrónico"
+          placeholder="Correo electrónico o usuario"
           value={form.emailOrUsername}
           onChange={handleChange}
-          className="w-full p-3 mb-4 rounded bg-neutral-800 text-white placeholder-gray-400"
+          className="w-full p-3 mb-4 rounded bg-neutral-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
 
         <input
@@ -73,7 +74,7 @@ const LoginPage = () => {
           placeholder="Contraseña"
           value={form.password}
           onChange={handleChange}
-          className="w-full p-3 mb-4 rounded bg-neutral-800 text-white placeholder-gray-400"
+          className="w-full p-3 mb-4 rounded bg-neutral-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
 
         <button
