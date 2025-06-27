@@ -62,12 +62,22 @@ const RegisterPage = () => {
             }),
           });
 
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.message || "No se pudo registrar el usuario");
-      }
+                const data = await res.json();
 
-      window.location.href = "/login";
+          if (!res.ok) {
+            throw new Error(data.message || "No se pudo registrar el usuario");
+          }
+
+          if (!data.token) {
+            throw new Error("Token no recibido");
+          }
+
+          localStorage.setItem("token", data.token);
+          window.location.href = "/home"; // o navigate("/home");
+
+
+
+
     } catch (err: any) {
       setError(err.message || "Error al registrar");
     }
