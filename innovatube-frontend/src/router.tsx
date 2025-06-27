@@ -3,26 +3,20 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 
 export const AppRoutes = () => (
   <BrowserRouter>
     <Routes>
-      {/* Redirección inicial al login */}
       <Route path="/" element={<Navigate to="/login" />} />
-      
-      {/* Rutas públicas */}
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
 
-      {/* Ruta protegida */}
-      <Route
-        path="/home"
-        element={
-          <PrivateRoute>
-            <HomePage />
-          </PrivateRoute>
-        }
-      />
+      {/* Rutas públicas protegidas */}
+      <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
+      <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+
+      {/* Ruta privada */}
+      <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>} />
     </Routes>
   </BrowserRouter>
 );
+
