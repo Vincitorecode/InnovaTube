@@ -2,6 +2,7 @@ import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+// --- REGISTRO ---
 export const registerUser = async (req, res) => {
   try {
     const { name, username, email, password } = req.body;
@@ -27,7 +28,6 @@ export const registerUser = async (req, res) => {
 
     await newUser.save();
 
-    // Generar token al registrar para evitar login adicional (opcional)
     const token = jwt.sign(
       { userId: newUser._id, email: newUser.email },
       process.env.JWT_SECRET,
@@ -42,22 +42,26 @@ export const registerUser = async (req, res) => {
   }
 };
 
+// --- LOGIN ---
 export const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { emailOrUsername, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Email and password are required' });
+    if (!emailOrUsername || !password) {
+      return res.status(400).json({ message: 'Email or username and password are required' });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({
+      $or: [{ email: emailOrUsername }, { username: emailOrUsername }]
+    });
+
     if (!user) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     const token = jwt.sign(
