@@ -7,10 +7,10 @@ import HomePage from "./pages/HomePage";
 export const AppRoutes = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      
+      <Route path="/" element={<HomePage />} />
     </Routes>
   </BrowserRouter>
 );
