@@ -57,7 +57,7 @@ const LoginPage = () => {
       }
 
       localStorage.setItem("token", data.token);
-      navigate("/");
+      navigate("/home");
     } catch (err: any) {
       setError(err.message || "Error de autenticación");
     }
