@@ -19,6 +19,8 @@ const allowedOrigins = [
   'https://innovatube-frontend.vercel.app'
 ];
 
+
+app.use(express.json());
 app.use(cors({
   origin: function(origin, callback) {
     if (!origin) return callback(null, true);
@@ -30,7 +32,7 @@ app.use(cors({
   }
 }));
 
-app.use(express.json());
+
 app.use(morgan('dev'));
 
 // Rutas
