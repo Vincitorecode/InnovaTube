@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const YOUTUBE_API_KEY = "AIzaSyBs5kTp96KHd8XEZe_IapOwH6Imx3iEVi0";
 
-const HomePage = ({ username }: { username: string }) => {
+const HomePage = ({ username }: { username?: string }) => {
   const [query, setQuery] = useState("");
   const [videos, setVideos] = useState<any[]>([]);
   const [favorites, setFavorites] = useState<any[]>([]);
