@@ -12,6 +12,17 @@ const LoginPage = () => {
 
   const [error, setError] = useState("");
 
+  // Expreesiones regulares para validación
+  const usernameRegex = /^[a-zA-Z0-9@._-]+$/;   // usuario o email
+  const passwordRegex = /^[^\s'"<>;]+$/;        // password sin espacios, comillas, <, >, ;
+
+   // Función para validar input según campo
+  const isValidInput = (input: string, field: 'username' | 'password') => {
+    if (field === 'username') return usernameRegex.test(input);
+    if (field === 'password') return passwordRegex.test(input);
+    return false;
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -21,6 +32,12 @@ const LoginPage = () => {
       setError("Por favor completa todos los campos");
       return;
     }
+
+    if (!isValidInput(form.password, 'password')) {
+      setError("Contraseña con caracteres inválidos");
+      return;
+    }
+
 
     try {
       const res = await fetch("http://localhost:5000/api/auth/login", {
