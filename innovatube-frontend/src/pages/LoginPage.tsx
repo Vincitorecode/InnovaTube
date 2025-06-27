@@ -1,9 +1,25 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { PlayCircle } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    // Evitar que se ejecute justo después de iniciar sesión
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
+    if (token) {
+      navigate("/home");
+    }
+  }, []);
 
   const [form, setForm] = useState({
     emailOrUsername: "",
