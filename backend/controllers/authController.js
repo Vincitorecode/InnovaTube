@@ -1,4 +1,3 @@
-// controllers/authController.js
 import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -28,7 +27,14 @@ export const registerUser = async (req, res) => {
 
     await newUser.save();
 
-    res.status(201).json({ message: 'User registered successfully' });
+    // Generar token al registrar para evitar login adicional (opcional)
+    const token = jwt.sign(
+      { userId: newUser._id, email: newUser.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.status(201).json({ token, message: 'User registered successfully' });
 
   } catch (error) {
     console.error('Register error:', error.message);
