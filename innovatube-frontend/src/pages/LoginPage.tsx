@@ -6,7 +6,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    email: "",
+    emailOrUsername: "",
     password: "",
   });
 
@@ -28,7 +28,7 @@ const LoginPage = () => {
   };
 
   const handleLogin = async () => {
-    if (!form.email || !form.password) {
+    if (!form.emailOrUsername || !form.password) {
       setError("Por favor completa todos los campos");
       return;
     }
@@ -44,7 +44,7 @@ const LoginPage = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: form.email,
+        email: form.emailOrUsername,
         password: form.password,
       }),
     });
@@ -81,7 +81,7 @@ const LoginPage = () => {
           type="text"
           name="emailOrUsername"
           placeholder="Correo electrónico o usuario"
-          value={form.email}
+          value={form.emailOrUsername}
           onChange={handleChange}
           className="w-full p-3 mb-4 rounded bg-neutral-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
